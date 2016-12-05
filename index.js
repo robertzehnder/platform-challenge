@@ -23,8 +23,6 @@ app.listen(9999, function () {
 //Routes
 //------
 
-//pick ES6 or not and make it consistent
-
 app.get('/', function (req, res) {
   version = pkg.version
   homeObject = {
@@ -64,10 +62,10 @@ app.post("/events", (req,res) => {
   })
 })
 
-app.put('/events/:id', (req,res) => {
-  evt.findOneAndUpdate({_id: req.params.id}, req.body.data, {new: true}).then(function() {
-    res.json(req.body.data)
-  })
+app.put("/events/:id", function(req, res){
+  evt.findOneAndUpdate({_id: req.params.id}, req.body, {new: true}).then(function(event){
+    res.json(event);
+  });
 })
 
 app.delete('/events/:id', (req,res) => {
